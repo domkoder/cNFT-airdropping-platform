@@ -11,22 +11,22 @@ type ShyftArrayResultResponse = {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ShyftArrayResultResponse>) {
     try {
-        var cm_address: string = '';
-        var network: string = '';
-        var version: string = "";
+        let cm_address: string = '';
+        let network: string = '';
+        let version: string = "";
 
         cm_address = typeof req.body.cm_address === 'string' ? req.body.cm_address : '';
         network = typeof req.body.network === 'string' ? req.body.network : 'mainnet-beta';
         version = typeof req.body.version === 'string' ? req.body.version : 'v3';
 
-        var shyftNetwork: Network = Network.Mainnet;
+        let shyftNetwork: Network = Network.Mainnet;
         if (network === 'mainnet-beta') shyftNetwork = Network.Mainnet;
         else if (network === 'devnet') shyftNetwork = Network.Devnet;
         else if (network === 'testnet') shyftNetwork = Network.Testnet;
         else throw new Error('WRONG_NETWORK');
 
-        var cm_mints: any[] = [];
-        var getMintsFromCandyMachine: string[];
+        let cm_mints: any[] = [];
+        let getMintsFromCandyMachine: string[];
 
         const cm_version = (version === "v3")?CandyMachineProgram.V3:CandyMachineProgram.V2;
     
